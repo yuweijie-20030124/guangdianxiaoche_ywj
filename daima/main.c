@@ -10,7 +10,7 @@ void main()
 	while(1)
 	{
 		Result++;					//Result自增
-		Delay(1000);				//延时1秒
+		Delay(10000);				//延时10秒
 		LCD_ShowNum(1,1,Result,3);	//在LCD的1行1列显示Result，长度为3位
 	}
 }
