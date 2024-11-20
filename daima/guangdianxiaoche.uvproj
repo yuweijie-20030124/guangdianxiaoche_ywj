@@ -14,7 +14,7 @@
       <TargetOption>
         <TargetCommonOption>
           <Device>AT89C52</Device>
-          <Vendor>Atmel</Vendor>
+          <Vendor>Microchip</Vendor>
           <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(24000000)</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
@@ -46,10 +46,10 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>Project</OutputName>
+          <OutputName>guangdianxiaoche</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -231,7 +231,7 @@
               <RCB>
                 <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0xffff</Size>
+                <Size>0x0</Size>
               </RCB>
               <RXB>
                 <Type>0</Type>
@@ -336,7 +336,7 @@
             <DataOverlaying>1</DataOverlaying>
             <OverlayString></OverlayString>
             <MiscControls></MiscControls>
-            <DisableWarningNumbers>16</DisableWarningNumbers>
+            <DisableWarningNumbers></DisableWarningNumbers>
             <LinkerCmdFile></LinkerCmdFile>
             <Assign></Assign>
             <ReserveString></ReserveString>
@@ -365,29 +365,14 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
+              <FileName>STARTUP.A51</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\STARTUP.A51</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>LCD1602.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\LCD1602.c</FilePath>
-            </File>
-            <File>
-              <FileName>LCD1602.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\LCD1602.h</FilePath>
-            </File>
-            <File>
-              <FileName>Delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>Delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Delay.h</FilePath>
             </File>
           </Files>
         </Group>

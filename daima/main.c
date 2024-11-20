@@ -1,16 +1,47 @@
-#include <REGX52.H>
-#include "LCD1602.h"	//åŒ…å«LCD1602å¤´æ–‡ä»¶
-#include "Delay.h"		//åŒ…å«Delayå¤´æ–‡ä»¶
+	#include<AT89X52.H>		 
+	#include<PWM.H>		 
+    
+//Ö÷º¯Êı
+	void main(void)
+{	
+	unsigned char i;
+    P1=0X00;   //¹Øµç»ú	
+		 	TMOD=0X01;
+        	TH0= 0XFc;		  //1ms¶¨Ê±
+         	TL0= 0X18;
+           	TR0= 1;
+        	ET0= 1;
+	        EA = 1;			   //¿ª×ÜÖĞ¶Ï
 
-int Result=0;
+	while(1)	//ÎŞÏŞÑ­»·
+	{ 	 
+			 //ÓĞĞÅºÅÎª0  Ã»ÓĞĞÅºÅÎª1
+			if( LeftIRBZ == 0 || RightIRBZ == 0 )  
+			{		
+			  stop();		   //µ÷ÓÃĞ¡³µÍ£Ö¹
+			}
+			  else
 
-void main()
-{
-	LCD_Init();
-	while(1)
-	{
-		Result++;					//Resultè‡ªå¢
-		Delay(10000);				//å»¶æ—¶10ç§’
-		LCD_ShowNum(1,1,Result,3);	//åœ¨LCDçš„1è¡Œ1åˆ—æ˜¾ç¤ºResultï¼Œé•¿åº¦ä¸º3ä½
-	}
+			 {			  	   if(Left_1_led==0&&Right_1_led==0)
+
+			   {
+			     run();   //µ÷ÓÃÇ°½øº¯Êı	  
+			   }
+				              
+							   if(Left_1_led==1&&Right_1_led==0)	    //×ó±ß¼ì²âµ½ºÚÏß
+			 	 {
+				 	  leftrun();		  //µ÷ÓÃĞ¡³µ×ó×ª  º¯Êı
+			     }
+			   
+				 			    if(Right_1_led==1&&Left_1_led==0)		//ÓÒ±ß¼ì²âµ½ºÚÏß
+				  {	  
+				      rightrun();		   //µ÷ÓÃĞ¡³µÓÒ×ª	º¯Êı
+				  }
+						    if(Right_1_led==1&&Left_1_led==1)		//×óÓÒ¶¼ÊÇºÚÏß£¬Ğ¡³µ½øÈëËíµÀ
+				  {	  
+				      //Ã÷ÌìÔÙÀ´Ğ´°É~
+				  }
+
+			}	 
+	 }
 }
