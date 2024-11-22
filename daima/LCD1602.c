@@ -1,9 +1,9 @@
 #include <REGX52.H>
 
 //引脚配置：
-sbit LCD_RS=P2^6;
-sbit LCD_RW=P2^5;
-sbit LCD_EN=P2^7;
+sbit LCD_RS=P1^0;
+sbit LCD_RW=P1^1;
+sbit LCD_EN=P1^2;
 #define LCD_DataPort P0
 
 //函数定义：

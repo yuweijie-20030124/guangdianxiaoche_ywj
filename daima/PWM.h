@@ -3,12 +3,12 @@
 
 
     //定义小车驱动模块输入IO口 
-	sbit IN1=P1^2;
-	sbit IN2=P1^3;
-	sbit IN3=P1^6;
-	sbit IN4=P1^7;
-	sbit EN1=P1^4;
-	sbit EN2=P1^5;
+	sbit IN1=P2^4;
+	sbit IN2=P2^5;
+	sbit IN3=P2^6;
+	sbit IN4=P2^7;
+	sbit EN1=P2^1;
+	sbit EN2=P2^2;
 	
 
 	/***蜂鸣器接线定义*****/
@@ -18,20 +18,20 @@
 	
     #define Right_1_led       P3_6	 //右循迹传感器 
 	
-    #define LeftIRBZ          P3_5	 //左避障传感器	
+    #define LeftIRBZ          P3_4	 //左避障传感器	
 	
-	#define RightIRBZ         P3_4	 //右避障传感器	  
+	#define RightIRBZ         P3_5	 //右避障传感器	  
    
-	#define Left_moto_pwm	  P1_6	 //PWM信号端
+	#define Left_moto_pwm	  P2_1	 //PWM信号端
 
-	#define Right_moto_pwm	  P1_7	 //PWM信号端
+	#define Right_moto_pwm	  P2_2	 //PWM信号端
 	
-	#define Left_moto_go      {P1_2=1,P1_3=0;}  //左电机向前走
-	#define Left_moto_back    {P1_2=0,P1_3=1;} 	//左边电机向后转
-	#define Left_moto_Stop    {P1_2=0,P1_3=0;}         //左边电机停转                     
-	#define Right_moto_go     {P1_4=1,P1_5=0;}	//右边电机向前走
-	#define Right_moto_back   {P1_4=0,P1_5=1;}	//右边电机向后走
-	#define Right_moto_Stop   {P1_4=0,P1_5=0;}      	//右边电机停转   
+	#define Left_moto_go      {P2_4=1,P2_5=0;}  //左电机向前走
+	#define Left_moto_back    {P2_4=0,P2_5=1;} 	//左边电机向后转
+	#define Left_moto_Stop    {P2_4=0,P2_5=0;}         //左边电机停转                     
+	#define Right_moto_go     {P2_6=1,P2_7=0;}	//右边电机向前走
+	#define Right_moto_back   {P2_6=0,P2_7=1;}	//右边电机向后走
+	#define Right_moto_Stop   {P2_6=0,P2_7=0;}      	//右边电机停转   
 
 	unsigned char pwm_val_left  =0;//变量定义
 	unsigned char push_val_left =0;// 左电机占空比N/20

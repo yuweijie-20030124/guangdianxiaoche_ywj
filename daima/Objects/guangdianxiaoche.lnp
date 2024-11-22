@@ -1,4 +1,5 @@
 ".\Objects\STARTUP.obj",
-".\Objects\main.obj" 
+".\Objects\main.obj",
+".\Objects\LCD1602.obj" 
 TO ".\Objects\guangdianxiaoche" 
 PRINT(".\Listings\guangdianxiaoche.m51") RAMSIZE(256) 
