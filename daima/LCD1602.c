@@ -1,29 +1,29 @@
 #include <REGX52.H>
-
+ 
 //引脚配置：
-sbit LCD_RS=P1^0;
-sbit LCD_RW=P1^1;
-sbit LCD_EN=P1^2;
-#define LCD_DataPort P0
-
+sbit LCD_RS=P3^0;
+sbit LCD_RW=P3^1;
+sbit LCD_EN=P3^2;
+#define LCD_DataPort P1
+ 
 //函数定义：
 /**
-  * @brief  LCD1602延时函数，12MHz调用可延时1ms
+  * @brief  LCD1602延时函数，11.0592MHz调用可延时1ms
   * @param  无
   * @retval 无
   */
 void LCD_Delay()
 {
 	unsigned char i, j;
-
+ 
 	i = 2;
-	j = 239;
+	j = 199;
 	do
 	{
 		while (--j);
 	} while (--i);
 }
-
+ 
 /**
   * @brief  LCD1602写命令
   * @param  Command 要写入的命令
@@ -39,7 +39,7 @@ void LCD_WriteCommand(unsigned char Command)
 	LCD_EN=0;
 	LCD_Delay();
 }
-
+ 
 /**
   * @brief  LCD1602写数据
   * @param  Data 要写入的数据
@@ -55,7 +55,7 @@ void LCD_WriteData(unsigned char Data)
 	LCD_EN=0;
 	LCD_Delay();
 }
-
+ 
 /**
   * @brief  LCD1602设置光标位置
   * @param  Line 行位置，范围：1~2
@@ -73,7 +73,7 @@ void LCD_SetCursor(unsigned char Line,unsigned char Column)
 		LCD_WriteCommand(0x80|(Column-1+0x40));
 	}
 }
-
+ 
 /**
   * @brief  LCD1602初始化函数
   * @param  无
@@ -86,7 +86,7 @@ void LCD_Init()
 	LCD_WriteCommand(0x06);//数据读写操作后，光标自动加一，画面不动
 	LCD_WriteCommand(0x01);//光标复位，清屏
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置上显示一个字符
   * @param  Line 行位置，范围：1~2
@@ -99,7 +99,7 @@ void LCD_ShowChar(unsigned char Line,unsigned char Column,char Char)
 	LCD_SetCursor(Line,Column);
 	LCD_WriteData(Char);
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置开始显示所给字符串
   * @param  Line 起始行位置，范围：1~2
@@ -116,7 +116,7 @@ void LCD_ShowString(unsigned char Line,unsigned char Column,char *String)
 		LCD_WriteData(String[i]);
 	}
 }
-
+ 
 /**
   * @brief  返回值=X的Y次方
   */
@@ -130,7 +130,7 @@ int LCD_Pow(int X,int Y)
 	}
 	return Result;
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置开始显示所给数字
   * @param  Line 起始行位置，范围：1~2
@@ -148,7 +148,7 @@ void LCD_ShowNum(unsigned char Line,unsigned char Column,unsigned int Number,uns
 		LCD_WriteData(Number/LCD_Pow(10,i-1)%10+'0');
 	}
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置开始以有符号十进制显示所给数字
   * @param  Line 起始行位置，范围：1~2
@@ -177,7 +177,7 @@ void LCD_ShowSignedNum(unsigned char Line,unsigned char Column,int Number,unsign
 		LCD_WriteData(Number1/LCD_Pow(10,i-1)%10+'0');
 	}
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置开始以十六进制显示所给数字
   * @param  Line 起始行位置，范围：1~2
@@ -203,7 +203,7 @@ void LCD_ShowHexNum(unsigned char Line,unsigned char Column,unsigned int Number,
 		}
 	}
 }
-
+ 
 /**
   * @brief  在LCD1602指定位置开始以二进制显示所给数字
   * @param  Line 起始行位置，范围：1~2

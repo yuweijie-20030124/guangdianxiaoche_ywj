@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   LCD1602                                                           11/22/2024 19:55:16 PAGE 1   
+C51 COMPILER V9.60.0.0   LCD1602                                                           12/26/2024 09:52:26 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LCD1602
@@ -9,31 +9,31 @@ COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LCD1602.c OPTIMIZE(8,SPEED) BROW
 line level    source
 
    1          #include <REGX52.H>
-   2          
+   2           
    3          //引脚配置：
-   4          sbit LCD_RS=P1^0;
-   5          sbit LCD_RW=P1^1;
-   6          sbit LCD_EN=P1^2;
-   7          #define LCD_DataPort P0
-   8          
+   4          sbit LCD_RS=P3^0;
+   5          sbit LCD_RW=P3^1;
+   6          sbit LCD_EN=P3^2;
+   7          #define LCD_DataPort P1
+   8           
    9          //函数定义：
   10          /**
-  11            * @brief  LCD1602延时函数，12MHz调用可延时1ms
+  11            * @brief  LCD1602延时函数，11.0592MHz调用可延时1ms
   12            * @param  无
   13            * @retval 无
   14            */
   15          void LCD_Delay()
   16          {
   17   1        unsigned char i, j;
-  18   1      
+  18   1       
   19   1        i = 2;
-  20   1        j = 239;
+  20   1        j = 199;
   21   1        do
   22   1        {
   23   2          while (--j);
   24   2        } while (--i);
   25   1      }
-  26          
+  26           
   27          /**
   28            * @brief  LCD1602写命令
   29            * @param  Command 要写入的命令
@@ -49,7 +49,7 @@ line level    source
   39   1        LCD_EN=0;
   40   1        LCD_Delay();
   41   1      }
-  42          
+  42           
   43          /**
   44            * @brief  LCD1602写数据
   45            * @param  Data 要写入的数据
@@ -62,12 +62,12 @@ line level    source
   52   1        LCD_DataPort=Data;
   53   1        LCD_EN=1;
   54   1        LCD_Delay();
-C51 COMPILER V9.60.0.0   LCD1602                                                           11/22/2024 19:55:16 PAGE 2   
+C51 COMPILER V9.60.0.0   LCD1602                                                           12/26/2024 09:52:26 PAGE 2   
 
   55   1        LCD_EN=0;
   56   1        LCD_Delay();
   57   1      }
-  58          
+  58           
   59          /**
   60            * @brief  LCD1602设置光标位置
   61            * @param  Line 行位置，范围：1~2
@@ -85,7 +85,7 @@ line level    source
   73   2          LCD_WriteCommand(0x80|(Column-1+0x40));
   74   2        }
   75   1      }
-  76          
+  76           
   77          /**
   78            * @brief  LCD1602初始化函数
   79            * @param  无
@@ -98,7 +98,7 @@ line level    source
   86   1        LCD_WriteCommand(0x06);//数据读写操作后，光标自动加一，画面不动
   87   1        LCD_WriteCommand(0x01);//光标复位，清屏
   88   1      }
-  89          
+  89           
   90          /**
   91            * @brief  在LCD1602指定位置上显示一个字符
   92            * @param  Line 行位置，范围：1~2
@@ -111,7 +111,7 @@ line level    source
   99   1        LCD_SetCursor(Line,Column);
  100   1        LCD_WriteData(Char);
  101   1      }
- 102          
+ 102           
  103          /**
  104            * @brief  在LCD1602指定位置开始显示所给字符串
  105            * @param  Line 起始行位置，范围：1~2
@@ -126,11 +126,11 @@ line level    source
  114   1        for(i=0;String[i]!='\0';i++)
  115   1        {
  116   2          LCD_WriteData(String[i]);
-C51 COMPILER V9.60.0.0   LCD1602                                                           11/22/2024 19:55:16 PAGE 3   
+C51 COMPILER V9.60.0.0   LCD1602                                                           12/26/2024 09:52:26 PAGE 3   
 
  117   2        }
  118   1      }
- 119          
+ 119           
  120          /**
  121            * @brief  返回值=X的Y次方
  122            */
@@ -144,7 +144,7 @@ line level    source
  130   2        }
  131   1        return Result;
  132   1      }
- 133          
+ 133           
  134          /**
  135            * @brief  在LCD1602指定位置开始显示所给数字
  136            * @param  Line 起始行位置，范围：1~2
@@ -162,7 +162,7 @@ line level    source
  148   2          LCD_WriteData(Number/LCD_Pow(10,i-1)%10+'0');
  149   2        }
  150   1      }
- 151          
+ 151           
  152          /**
  153            * @brief  在LCD1602指定位置开始以有符号十进制显示所给数字
  154            * @param  Line 起始行位置，范围：1~2
@@ -190,10 +190,10 @@ line level    source
  176   1        {
  177   2          LCD_WriteData(Number1/LCD_Pow(10,i-1)%10+'0');
  178   2        }
-C51 COMPILER V9.60.0.0   LCD1602                                                           11/22/2024 19:55:16 PAGE 4   
+C51 COMPILER V9.60.0.0   LCD1602                                                           12/26/2024 09:52:26 PAGE 4   
 
  179   1      }
- 180          
+ 180           
  181          /**
  182            * @brief  在LCD1602指定位置开始以十六进制显示所给数字
  183            * @param  Line 起始行位置，范围：1~2
@@ -219,7 +219,7 @@ line level    source
  203   3          }
  204   2        }
  205   1      }
- 206          
+ 206           
  207          /**
  208            * @brief  在LCD1602指定位置开始以二进制显示所给数字
  209            * @param  Line 起始行位置，范围：1~2

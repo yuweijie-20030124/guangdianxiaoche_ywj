@@ -14,29 +14,32 @@
 	/***蜂鸣器接线定义*****/
     sbit BUZZ=P2^3;
  
-    #define Left_1_led        P3_7	 //左循迹传感器  
 	
-    #define Right_1_led       P3_6	 //右循迹传感器 
-	
+    #define data1         P0_6	 //左循迹传感器
+		
+    #define data2     	  P0_5	 //中间循迹传感器
+
+    #define data3         P0_4	 //右循迹传感器
+			
     #define LeftIRBZ          P3_4	 //左避障传感器	
 	
-	#define RightIRBZ         P3_5	 //右避障传感器	  
+		#define RightIRBZ         P3_5	 //右避障传感器	  
    
-	#define Left_moto_pwm	  P2_1	 //PWM信号端
+		#define Left_moto_pwm	  P2_1	 //PWM信号端
 
-	#define Right_moto_pwm	  P2_2	 //PWM信号端
+		#define Right_moto_pwm	  P2_2	 //PWM信号端
 	
 	#define Left_moto_go      {P2_4=1,P2_5=0;}  //左电机向前走
 	#define Left_moto_back    {P2_4=0,P2_5=1;} 	//左边电机向后转
-	#define Left_moto_Stop    {P2_4=0,P2_5=0;}         //左边电机停转                     
+	#define Left_moto_Stop    {P2_4=0,P2_5=0;}  //左边电机停转                     
 	#define Right_moto_go     {P2_6=1,P2_7=0;}	//右边电机向前走
 	#define Right_moto_back   {P2_6=0,P2_7=1;}	//右边电机向后走
-	#define Right_moto_Stop   {P2_6=0,P2_7=0;}      	//右边电机停转   
+	#define Right_moto_Stop   {P2_6=0,P2_7=0;}  //右边电机停转   
 
-	unsigned char pwm_val_left  =0;//变量定义
-	unsigned char push_val_left =0;// 左电机占空比N/20
+	unsigned char pwm_val_left  =0;							//变量定义
+	unsigned char push_val_left =0;							// 左电机占空比N/20
 	unsigned char pwm_val_right =0;
-	unsigned char push_val_right=0;// 右电机占空比N/20
+	unsigned char push_val_right=0;							// 右电机占空比N/20
 	bit Right_moto_stop=1;
 	bit Left_moto_stop =1;
 	unsigned  int  time=0;
@@ -53,8 +56,8 @@
 //前速前进
      void  run(void)
 {
-     push_val_left=15;	 //速度调节变量 0-20。。。0最小，20最大
-	 push_val_right=15;
+   push_val_left=5;	 //速度调节变量 0-20。。。0最小，20最大
+	 push_val_right=5;
 	 Left_moto_go ;   //左电机往前走
 	 Right_moto_go ;  //右电机往前走
 }
@@ -62,8 +65,8 @@
 //后退函数 
      void  backrun(void)
 {
-     push_val_left=15;	 //速度调节变量 0-20。。。0最小，20最大
-	 push_val_right=15;
+     push_val_left=10;	 //速度调节变量 0-20。。。0最小，20最大
+	 push_val_right=10;
 	 Left_moto_back;   //左电机往后走
 	 Right_moto_back;  //右电机往后走
 }
@@ -71,8 +74,8 @@
 //左转
      void  leftrun(void)
 {	 
-     push_val_left=5;
-	 push_val_right=15;
+     push_val_left=0.01;
+	 push_val_right=0.01;
 	 Right_moto_go ;  //右电机往前走
      Left_moto_back   ;  //左电机后走
 }
@@ -80,8 +83,8 @@
 //右转
      void  rightrun(void)
 { 
-	 push_val_left=16;
-	 push_val_right=8;
+	 push_val_left=0.01;
+	 push_val_right=0.01;
      Left_moto_go  ;   //左电机往前走
 	 Right_moto_back    ;  //右电机往后走	
 }
